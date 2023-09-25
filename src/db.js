@@ -9,16 +9,21 @@ const client = new MongoClient(uri, {
   },
 });
 
-async function run() {
+async function conexion(db_name) {
   try {
     await client.connect();
-    await client.db("").command({ ping: 1 });
+
+    db = client.db(db_name);
+
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
-  } finally {
-    await client.close();
+
+    return db;
+  } catch (error) {
+    console.log("Error de conexion con MongoDB:", error);
+    throw Error;
   }
 }
 
-module.exports = run;
+module.exports = conexion;
