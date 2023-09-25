@@ -2,7 +2,11 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-const whitelist = ["http://localhost:5173", "jxsejaramillo.com"];
+const whitelist = [
+  "http://localhost:5173",
+  "jxsejaramillo.com",
+  "http://localhost:3000",
+];
 
 app.use(express.json());
 
@@ -19,5 +23,9 @@ app.use(
 );
 
 app.disable("x-powered-by");
+
+app.get("/", (req, res) => {
+  res.send("Server is working");
+});
 
 module.exports = app;
