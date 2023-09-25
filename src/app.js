@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const indexRouter = require("./routes/index");
 
 const app = express();
 const whitelist = [
@@ -24,8 +25,6 @@ app.use(
 
 app.disable("x-powered-by");
 
-app.get("/", (req, res) => {
-  res.send("Server is working");
-});
+app.use("/", indexRouter);
 
 module.exports = app;
