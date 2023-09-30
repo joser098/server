@@ -5,7 +5,7 @@ const indexRouter = require("./routes/index");
 const app = express();
 const whitelist = [
   "http://localhost:5173",
-  "jxsejaramillo.com",
+  "https://www.jxsejaramillo.com",
   "http://localhost:3000",
 ];
 
