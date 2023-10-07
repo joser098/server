@@ -5,7 +5,11 @@ const postContactMessage = async (message) => {
 
   const collection = await db.collection("contact_messages");
 
-  return collection.insertOne(message).toArray();
+  const res = await collection.insertOne(message);
+
+  if (res.acknowledged) {
+    return "Message saved successfully";
+  }
 };
 
 module.exports = postContactMessage;
