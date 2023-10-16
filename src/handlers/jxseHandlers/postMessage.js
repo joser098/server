@@ -1,4 +1,5 @@
 const postContactMessage = require("../../controllers/jxseControllers/postContactMessage");
+const sendContactMessage = require("../../services/sendContactMessage");
 const { validateMessage } = require("./messageSchema");
 
 const postMessage = async (req, res) => {
@@ -12,6 +13,8 @@ const postMessage = async (req, res) => {
     }
 
     const response = await postContactMessage(validation.data);
+
+    const message = await sendContactMessage(validation.data.email);
 
     return res.status(201).json({ message: response });
   } catch (error) {
