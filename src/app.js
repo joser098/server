@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const indexRouter = require("./routes/index");
+const notFound = require("./middlewares/notFound");
 
 const app = express();
 const whitelist = [
@@ -10,7 +11,6 @@ const whitelist = [
 ];
 
 app.use(express.json());
-
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -24,7 +24,8 @@ app.use(
 );
 
 app.disable("x-powered-by");
-
 app.use("/", indexRouter);
+
+app.use(notFound);
 
 module.exports = app;
